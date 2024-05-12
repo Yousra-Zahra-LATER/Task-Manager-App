@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-
+import { Button } from "../components/Button";
+import { TextBox } from "../components/TextBox";
 import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const user = "";
@@ -11,7 +12,7 @@ export const Login = () => {
   } = useForm();
   const navigate = useNavigate();
 
-  const submitHabndler=async (data)=>{
+  const submitHandler=async ()=>{
     console.log('submit');
   }
   //Cet effet est utile pour rediriger automatiquement l'utilisateur
@@ -37,27 +38,43 @@ export const Login = () => {
               <span>Cloud-Based</span>
               <span>Task Manager</span>
             </p>
-              <div className="circle rotate-in-up-left"></div>
+            <div className='cell'>
+              <div className='circle rotate-in-up-left'></div>
+            </div>
           </div>
         </div>
         {/*right side*/}
         <div className="w-full md:w-1/3 p-4 md:p-1 flex flex-col justify-center items-center">
-        <form onSubmit={handleSubmit(submitHabndler)} className='form-container w-full md:w-[400px] flex flex-col  gap-y-8 bg-white px-10 pt-14 pb-14'>
+        <form onSubmit={handleSubmit(submitHandler)} className='form-container w-full md:w-[400px] flex flex-col  gap-y-8 bg-white px-10 pt-14 pb-14'>
           <div className="">
            <p className="text-sky-600 text-3xl font-bold text-center">Welcome back!</p>
-           <p className="text-center text-base text-gray-700 mt-2"> Keep all your credential safe</p>
+           <p className="text-center text-base text-gray-700 mt-2"> Keep all your credential safge</p>
           </div>
-           <div className="flex flex-col gap-y-5">
-            <Textbox 
+           <div className="flex flex-col gap-y-6">
+            <TextBox 
               placeholder="email@example.com"
               type='email'
               name='email'
               label='Email Address'
               className='w-full rounded-full'
-              register={register ("email", {required : 'Email Adress is required'})}
+              register={register("email", { required: 'Email Adress is required',})}
               error={errors.email ? errors.email.message:''}
-            
             />
+            <TextBox 
+              placeholder="password"
+              type='password'
+              name='password'
+              label='Password'
+              className='w-full rounded-full'
+              register={register ("password", {required : 'Password is required',})}
+              error={errors.password ? errors.password.message:''}
+            />
+            <span className="text-sm text-gray-600 hover::text-blue-600 hover:underline cursor-pointer">Forget Password?</span>
+             <Button 
+             type='submit' 
+             label='Submit'
+             className="w-full h-10 bg-sky-700 text-white rounded-full"/>
+
            </div>
         </form>
         </div>
